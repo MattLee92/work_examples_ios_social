@@ -13,6 +13,10 @@
 		7FA2298A1B0835550091F05A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7FA229891B0835550091F05A /* Images.xcassets */; };
 		7FA2298D1B0835550091F05A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FA2298B1B0835550091F05A /* LaunchScreen.xib */; };
 		7FA229991B0835550091F05A /* SocialTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA229981B0835550091F05A /* SocialTests.swift */; };
+		7FA229A51B08534F0091F05A /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA229A41B08534F0091F05A /* Photo.swift */; };
+		7FA229A61B0853A30091F05A /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA229A41B08534F0091F05A /* Photo.swift */; };
+		7FA229A81B0855570091F05A /* FlickrAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA229A71B0855570091F05A /* FlickrAPI.swift */; };
+		7FA229A91B0855570091F05A /* FlickrAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA229A71B0855570091F05A /* FlickrAPI.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +40,8 @@
 		7FA229921B0835550091F05A /* SocialTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SocialTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7FA229971B0835550091F05A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7FA229981B0835550091F05A /* SocialTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialTests.swift; sourceTree = "<group>"; };
+		7FA229A41B08534F0091F05A /* Photo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
+		7FA229A71B0855570091F05A /* FlickrAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlickrAPI.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +83,8 @@
 		7FA2297F1B0835550091F05A /* Social */ = {
 			isa = PBXGroup;
 			children = (
+				7FA229A71B0855570091F05A /* FlickrAPI.swift */,
+				7FA229A41B08534F0091F05A /* Photo.swift */,
 				7FA229821B0835550091F05A /* AppDelegate.swift */,
 				7FA229841B0835550091F05A /* ViewController.swift */,
 				7FA229861B0835550091F05A /* Main.storyboard */,
@@ -213,8 +221,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7FA229A51B08534F0091F05A /* Photo.swift in Sources */,
 				7FA229851B0835550091F05A /* ViewController.swift in Sources */,
 				7FA229831B0835550091F05A /* AppDelegate.swift in Sources */,
+				7FA229A81B0855570091F05A /* FlickrAPI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -222,6 +232,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7FA229A91B0855570091F05A /* FlickrAPI.swift in Sources */,
+				7FA229A61B0853A30091F05A /* Photo.swift in Sources */,
 				7FA229991B0835550091F05A /* SocialTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
