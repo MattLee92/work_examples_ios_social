@@ -26,9 +26,9 @@ class Contact {
     
     
     //Initialise variables
-    init(){//title: String, tags: [String], url: String){
-        self.firstName = ""
-        self.lastName = ""
+    init(){
+        self.firstName = "First Name"
+        self.lastName = "Last Name"
         self.address = ""
         self.imageURL = ""
         self.image = nil

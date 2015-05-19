@@ -23,6 +23,12 @@
 		7FA229AF1B086C570091F05A /* TimelineEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA229AD1B086C570091F05A /* TimelineEntry.swift */; };
 		7FA229B11B09997C0091F05A /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FA229B01B09997C0091F05A /* WebKit.framework */; };
 		7FA229B31B0999830091F05A /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FA229B21B0999830091F05A /* Social.framework */; };
+		7FA229B51B0AE3A00091F05A /* TwitterAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA229B41B0AE3A00091F05A /* TwitterAPI.swift */; };
+		7FA229B61B0AE3A00091F05A /* TwitterAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA229B41B0AE3A00091F05A /* TwitterAPI.swift */; };
+		7FA229B81B0AFFE70091F05A /* ContactTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA229B71B0AFFE70091F05A /* ContactTableViewController.swift */; };
+		7FA229B91B0AFFE70091F05A /* ContactTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA229B71B0AFFE70091F05A /* ContactTableViewController.swift */; };
+		7FA229BB1B0B06DA0091F05A /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA229BA1B0B06DA0091F05A /* DetailViewController.swift */; };
+		7FA229BC1B0B06DA0091F05A /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA229BA1B0B06DA0091F05A /* DetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +58,9 @@
 		7FA229AD1B086C570091F05A /* TimelineEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineEntry.swift; sourceTree = "<group>"; };
 		7FA229B01B09997C0091F05A /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		7FA229B21B0999830091F05A /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		7FA229B41B0AE3A00091F05A /* TwitterAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterAPI.swift; sourceTree = "<group>"; };
+		7FA229B71B0AFFE70091F05A /* ContactTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactTableViewController.swift; sourceTree = "<group>"; };
+		7FA229BA1B0B06DA0091F05A /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,12 +107,15 @@
 			isa = PBXGroup;
 			children = (
 				7FA229A71B0855570091F05A /* FlickrAPI.swift */,
+				7FA229B41B0AE3A00091F05A /* TwitterAPI.swift */,
 				7FA229A41B08534F0091F05A /* Contact.swift */,
 				7FA229AA1B086B770091F05A /* SocialMediaAccount.swift */,
 				7FA229AD1B086C570091F05A /* TimelineEntry.swift */,
 				7FA229821B0835550091F05A /* AppDelegate.swift */,
 				7FA229841B0835550091F05A /* ViewController.swift */,
 				7FA229861B0835550091F05A /* Main.storyboard */,
+				7FA229BA1B0B06DA0091F05A /* DetailViewController.swift */,
+				7FA229B71B0AFFE70091F05A /* ContactTableViewController.swift */,
 				7FA229891B0835550091F05A /* Images.xcassets */,
 				7FA2298B1B0835550091F05A /* LaunchScreen.xib */,
 				7FA229801B0835550091F05A /* Supporting Files */,
@@ -237,9 +249,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7FA229BB1B0B06DA0091F05A /* DetailViewController.swift in Sources */,
 				7FA229A51B08534F0091F05A /* Contact.swift in Sources */,
 				7FA229851B0835550091F05A /* ViewController.swift in Sources */,
+				7FA229B51B0AE3A00091F05A /* TwitterAPI.swift in Sources */,
 				7FA229831B0835550091F05A /* AppDelegate.swift in Sources */,
+				7FA229B81B0AFFE70091F05A /* ContactTableViewController.swift in Sources */,
 				7FA229AE1B086C570091F05A /* TimelineEntry.swift in Sources */,
 				7FA229A81B0855570091F05A /* FlickrAPI.swift in Sources */,
 				7FA229AB1B086B770091F05A /* SocialMediaAccount.swift in Sources */,
@@ -254,7 +269,10 @@
 				7FA229A61B0853A30091F05A /* Contact.swift in Sources */,
 				7FA229AF1B086C570091F05A /* TimelineEntry.swift in Sources */,
 				7FA229991B0835550091F05A /* SocialTests.swift in Sources */,
+				7FA229B91B0AFFE70091F05A /* ContactTableViewController.swift in Sources */,
+				7FA229B61B0AE3A00091F05A /* TwitterAPI.swift in Sources */,
 				7FA229AC1B086B770091F05A /* SocialMediaAccount.swift in Sources */,
+				7FA229BC1B0B06DA0091F05A /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

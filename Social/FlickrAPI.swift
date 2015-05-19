@@ -76,7 +76,7 @@ func photosForUser(user: String, maximumResults: Int = FlickrDefaultMaximumResul
 ///
 /// :param: `nsid`: the flickr user name to download the photo list for
 /// :param: `maximumResults`: the maximum number of results to return
-func photosForNSID(nsid: String, maximumResults: Int = FlickrDefaultMaximumResults) -> Array<FlickrPhoto>? {
+func photosForNSID(nsid: String, maximumResults: Int = FlickrDefaultMaximumResults) ->Array<FlickrPhoto>? {
     if let response = fetch("https://api.flickr.com/services/rest/?method=flickr.photos.search&per_page=\(maximumResults)&has_geo=1&user_id=\(nsid)&extras=original_format,tags,description,geo,date_upload,owner_name,place_url") {
         return photosForFlickrJSONResponse(response)
     }
