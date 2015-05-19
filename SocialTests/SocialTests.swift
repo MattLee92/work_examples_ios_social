@@ -16,7 +16,7 @@ class SocialTests: XCTestCase {
     let testCont = Contact()
     
     override func setUp() {
-        
+        //Set up Flickrkey and create a test contact
         FlickrAPIKey = "c5a55c321772d09421c792f678a5323e"
         testCont.firstName = "SomeFirstName"
         testCont.lastName = "SomeLastName"
@@ -38,7 +38,7 @@ class SocialTests: XCTestCase {
         
     }
 
-
+    //Get the lastest photos from Flickr
     func testLatestFlickrPhotos() {
         let photos = latestFlickrPhotos(maximumResults: maxphoto)
         XCTAssert(photos != nil)
@@ -46,6 +46,7 @@ class SocialTests: XCTestCase {
     
     }
     
+    //Download the latest photos from Flickr
     func testDownloadLatestFlickrPhoto() {
         let photos = latestFlickrPhotos(maximumResults: maxphoto)
         XCTAssert(photos != nil)
@@ -60,7 +61,7 @@ class SocialTests: XCTestCase {
         
     }
     
-    
+    //Test asyncronus download of an image
     func testDowloadAsync() {
         //Set mainQueue to a low priority backgroung queue
         mainQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0)
@@ -84,12 +85,11 @@ class SocialTests: XCTestCase {
         
     }
    
-    
+    //Test serialisation
     func testSaveToFile() {
         let save1 = testCont
         let save2 = testCont
         var photos: Array<Contact> = [save1, save2]
-        
         let arrayPLIST: NSArray = photos.map { $0.propertyListRep()}
         //Get the file path and name
         let saveDir = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as! NSString
@@ -98,33 +98,16 @@ class SocialTests: XCTestCase {
         XCTAssertTrue(arrayPLIST.writeToFile(fileName, atomically: true), "Could not write")
     }
 
-    
-    
-    
+    //Test de-serialisation
     func testLoadFromFile() {
         //Get the file path and name
         let saveDir = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as! NSString
         let fileName = saveDir.stringByAppendingPathComponent("data.plist")
-        //Get dictionary of photos and convert them back to an array of photos
+        //Get dictionary of photos and convert them back to an array of Contacts
         let fileContent = NSArray(contentsOfFile: fileName) as! Array<NSDictionary>
         let arrayReadContact = fileContent.map{ Contact(PropertyList: $0)}
         XCTAssertNotNil(arrayReadContact, "Could not read")
-        
     }
 
     
-    
-    
-    
-    
-    
-    }
-    
-   
-
-    
-    
-    
-    
-    
-
+}
