@@ -79,7 +79,7 @@ extension Contact {
             lNameKey : lastName,
             addressKey : address,
             imageUrlKey : imageURL,
-            imageKey : image!,
+           // imageKey : image!,
             sitesKey : sites
         ]
         return pld

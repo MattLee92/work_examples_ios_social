@@ -8,6 +8,7 @@
 
 import UIKit
 import XCTest
+import WebKit
 
 class SocialTests: XCTestCase {
     
@@ -15,12 +16,15 @@ class SocialTests: XCTestCase {
     let testCont = Contact()
     
     override func setUp() {
+        
         FlickrAPIKey = "c5a55c321772d09421c792f678a5323e"
         testCont.firstName = "SomeFirstName"
         testCont.lastName = "SomeLastName"
         testCont.address = "Ipswich, Qld 4305"
         testCont.imageURL = "http://www.griffith.edu.au/__data/assets/image/0019/632332/gu-header-logo.png"
         testCont.sites = []
+       // testCont.loadimage(conToImage)
+        
     }
     
     //Test Setters and getters for Contact Class
@@ -79,11 +83,48 @@ class SocialTests: XCTestCase {
         XCTAssertNotNil(UIImage(data: testCont.image!), "Not an Image")
         
     }
+   
+    
+    func testSaveToFile() {
+        let save1 = testCont
+        let save2 = testCont
+        var photos: Array<Contact> = [save1, save2]
+        
+        let arrayPLIST: NSArray = photos.map { $0.propertyListRep()}
+        //Get the file path and name
+        let saveDir = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as! NSString
+        let fileName = saveDir.stringByAppendingPathComponent("data.plist")
+        //Write array to file
+        XCTAssertTrue(arrayPLIST.writeToFile(fileName, atomically: true), "Could not write")
+    }
+
+    
+    
+    
+    func testLoadFromFile() {
+        //Get the file path and name
+        let saveDir = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as! NSString
+        let fileName = saveDir.stringByAppendingPathComponent("data.plist")
+        //Get dictionary of photos and convert them back to an array of photos
+        let fileContent = NSArray(contentsOfFile: fileName) as! Array<NSDictionary>
+        let arrayReadContact = fileContent.map{ Contact(PropertyList: $0)}
+        XCTAssertNotNil(arrayReadContact, "Could not read")
+        
+    }
+
     
     
     
     
     
     
+    }
     
-}
+   
+
+    
+    
+    
+    
+    
+
