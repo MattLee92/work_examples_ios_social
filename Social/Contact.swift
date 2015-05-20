@@ -29,7 +29,7 @@ class Contact {
     init(){
         self.firstName = "First Name"
         self.lastName = "Last Name"
-        self.address = ""
+        self.address = "Ipswich 4305"
         self.imageURL = ""
         self.image = nil
         self.sites = []

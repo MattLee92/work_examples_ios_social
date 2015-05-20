@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ContactTableViewController: UITableViewController {
+class ContactTableViewController: UITableViewController, DetailViewControllerDelegate {
 
     var contacts = Array<Contact>()
     var currentContact: Contact!
@@ -53,8 +53,35 @@ class ContactTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! UITableViewCell
 
-        let contact = contacts[indexPath.row]
-        cell.textLabel?.text = "\(contact.firstName), \(contact.lastName)"
+                let contact = contacts[indexPath.row]
+      
+        
+        let conToImage: (NSData?) -> Void = {
+            if let d = $0 {
+                let image = UIImage(data: d)
+                
+                var frame = cell.imageView!.frame
+                let imageSize = 32 as CGFloat
+                frame.size.height = imageSize
+                frame.size.width = imageSize
+                cell.imageView?.frame = frame
+                cell.imageView?.layer.cornerRadius = imageSize / 2.0
+                cell.imageView?.clipsToBounds = true
+              
+                cell.imageView?.image = image
+                
+            } else {
+               
+            }
+        }
+        if let d = contacts[indexPath.row].image {
+            conToImage(d)
+        } else {
+            contact.loadimage(conToImage)
+        }
+
+          cell.textLabel?.text = "\(contact.firstName) \(contact.lastName)"
+        
         return cell
     }
     
@@ -62,6 +89,16 @@ class ContactTableViewController: UITableViewController {
     override func viewWillAppear(animated: Bool) {
         tableView.reloadData()
     }
+    
+    
+    
+    func detailViewController(dvc: DetailTableViewController, contact: Contact){
+        navigationController?.popToViewController(self, animated: true)
+        tableView.reloadData()
+    }
+    
+    
+    
 
     /*
     // Override to support conditional editing of the table view.
@@ -98,14 +135,24 @@ class ContactTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
+        
+        if let cell = sender as? UITableViewCell{
+            let indexPath = tableView.indexPathForCell(cell)!
+            currentContact = contacts[indexPath.row]
+        }
+
+        
+        
+        if let dvc = segue.destinationViewController as? DetailTableViewController {
+            dvc.contact = currentContact
+            dvc.delegete = self
+        }
     }
-    */
+
 
 }
