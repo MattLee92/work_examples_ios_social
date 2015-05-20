@@ -6,6 +6,8 @@
 	<string>en</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Social is trying to find your contact</string>
 	<key>CFBundleIdentifier</key>
 	<string>au.edu.griffith.ict.prog.$(PRODUCT_NAME:rfc1034identifier)</string>
 	<key>CFBundleInfoDictionaryVersion</key>

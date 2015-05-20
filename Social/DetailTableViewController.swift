@@ -15,7 +15,7 @@ protocol DetailViewControllerDelegate{
 
 
 
-class DetailTableViewController: UITableViewController, UITextFieldDelegate {
+class DetailTableViewController: UITableViewController, UITextFieldDelegate, MapViewControllerDelegate {
 
     var contact: Contact!
     var delegete: DetailViewControllerDelegate!
@@ -128,6 +128,13 @@ class DetailTableViewController: UITableViewController, UITextFieldDelegate {
         }
     
     }
+    
+    
+    func mapViewController(dvc: MapViewController, contact: Contact){
+        navigationController?.popToViewController(self, animated: true)
+        tableView.reloadData()
+    }
+
 
     /*
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -174,14 +181,21 @@ class DetailTableViewController: UITableViewController, UITextFieldDelegate {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
+       
+        if let dvc = segue.destinationViewController as? MapViewController {
+            dvc.contact = contact
+            dvc.delegate = self
+        }
+        
+        
+        
+        
     }
-    */
+    
 
 }

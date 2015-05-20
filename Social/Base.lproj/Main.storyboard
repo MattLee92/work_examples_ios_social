@@ -87,11 +87,14 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Cell" id="5HT-0B-i2P">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="AddressCell" id="5HT-0B-i2P">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5HT-0B-i2P" id="zse-g7-be3">
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="XJl-vD-vwT" kind="show" identifier="ShowMap" id="o43-YS-waM"/>
+                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -226,6 +229,63 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ixB-Be-fbs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2568" y="-386"/>
+        </scene>
+        <!--Map View Controller-->
+        <scene sceneID="22f-Qb-NJ2">
+            <objects>
+                <viewController id="XJl-vD-vwT" customClass="MapViewController" customModule="Social" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Og4-Wq-d28"/>
+                        <viewControllerLayoutGuide type="bottom" id="V7y-Xz-vjY"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kPg-Bh-1Q4">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="J92-ff-uHG">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </mapView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YGT-sI-vKG">
+                                <rect key="frame" x="16" y="72" width="568" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="568" id="YOw-GN-qnl"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardAppearance="light" returnKeyType="go"/>
+                                <connections>
+                                    <outlet property="delegate" destination="XJl-vD-vwT" id="uh4-OQ-9dD"/>
+                                </connections>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="J92-ff-uHG" secondAttribute="trailing" id="6j4-33-0xr"/>
+                            <constraint firstItem="YGT-sI-vKG" firstAttribute="centerX" secondItem="J92-ff-uHG" secondAttribute="centerX" id="77N-Vg-Zuy"/>
+                            <constraint firstItem="YGT-sI-vKG" firstAttribute="top" secondItem="Og4-Wq-d28" secondAttribute="bottom" constant="8" symbolic="YES" id="Dzw-NJ-uTs"/>
+                            <constraint firstAttribute="centerX" secondItem="YGT-sI-vKG" secondAttribute="centerX" id="ESs-mq-8Vg"/>
+                            <constraint firstItem="J92-ff-uHG" firstAttribute="bottom" secondItem="V7y-Xz-vjY" secondAttribute="top" id="MEo-RT-s7N"/>
+                            <constraint firstItem="J92-ff-uHG" firstAttribute="leading" secondItem="kPg-Bh-1Q4" secondAttribute="leading" id="cwd-UO-rgc"/>
+                            <constraint firstItem="J92-ff-uHG" firstAttribute="top" secondItem="YGT-sI-vKG" secondAttribute="bottom" constant="-102" id="kk2-Nm-aIB"/>
+                            <constraint firstItem="J92-ff-uHG" firstAttribute="leading" secondItem="YGT-sI-vKG" secondAttribute="trailing" constant="-542" id="ktR-Wv-4fY"/>
+                            <constraint firstItem="J92-ff-uHG" firstAttribute="top" secondItem="kPg-Bh-1Q4" secondAttribute="top" id="lWX-El-enM"/>
+                            <constraint firstItem="YGT-sI-vKG" firstAttribute="leading" secondItem="kPg-Bh-1Q4" secondAttribute="leadingMargin" id="n5g-Aj-PvM"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="kk2-Nm-aIB"/>
+                                <exclude reference="ktR-Wv-4fY"/>
+                                <exclude reference="ESs-mq-8Vg"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="AddressTextField" destination="YGT-sI-vKG" id="hyJ-R6-f1V"/>
+                        <outlet property="mapView" destination="J92-ff-uHG" id="Yhu-ZR-oOR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AuE-TR-V7I" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3253" y="-386"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="YqT-NA-S90">
