@@ -16,8 +16,8 @@ class SocialMediaAccount {
     
     
     init(){
-        self.identifier = ""
-        self.type = ""
+        self.identifier = "http://www.google.com.au"
+        self.type = "Web"
         self.entries = []
     }
     

@@ -117,6 +117,9 @@ class DetailTableViewController: UITableViewController, UITextFieldDelegate, Map
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
+        
+        
+        
         // Return the number of rows in the section.
 
         if section == 1 {
@@ -135,6 +138,7 @@ class DetailTableViewController: UITableViewController, UITextFieldDelegate, Map
         tableView.reloadData()
     }
 
+    
 
     /*
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -186,13 +190,44 @@ class DetailTableViewController: UITableViewController, UITextFieldDelegate, Map
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-       
+      
+        
+        if let cell = sender as? UITableViewCell {
+            if cell.detailTextLabel == "Web" {
+                performSegueWithIdentifier("ShowWeb", sender: self)
+            }
+        }
+        
+        
+        
+        
+        
+        
+        if let fn = firstNameTxt.text {
+            if let ln = lastNameTxt.text {
+                if let ad = addressCell.textLabel!.text  {
+                    if let iu = pictureUrlTxt.text {
+                        contact.firstName = fn
+                        contact.lastName = ln
+                        contact.address = ad
+                        contact.imageURL = iu
+                        contact.image = imageData
+                    }
+                }
+            }
+        }
+        
+
+        
+        
         if let dvc = segue.destinationViewController as? MapViewController {
             dvc.contact = contact
             dvc.delegate = self
         }
         
-        
+        if let dvc = segue.destinationViewController as? WebViewController {
+            dvc.contactUrl = contact.sites[0].identifier
+        }
         
         
     }

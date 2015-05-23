@@ -32,7 +32,7 @@ class Contact {
         self.address = "Ipswich 4305"
         self.imageURL = ""
         self.image = nil
-        self.sites = []
+        self.sites = [SocialMediaAccount()]
     }
         
     //Downloads data from given URL and converts to image

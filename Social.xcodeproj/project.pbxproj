@@ -33,6 +33,8 @@
 		7FA229C81B0C302F0091F05A /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA229C61B0C302F0091F05A /* MapViewController.swift */; };
 		7FA229CA1B0C309E0091F05A /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FA229C91B0C309E0091F05A /* MapKit.framework */; };
 		7FA229CC1B0C30A60091F05A /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FA229CB1B0C30A60091F05A /* CoreLocation.framework */; };
+		7FA229CE1B104ACA0091F05A /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA229CD1B104ACA0091F05A /* WebViewController.swift */; };
+		7FA229CF1B104ACA0091F05A /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA229CD1B104ACA0091F05A /* WebViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +70,7 @@
 		7FA229C61B0C302F0091F05A /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		7FA229C91B0C309E0091F05A /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		7FA229CB1B0C30A60091F05A /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		7FA229CD1B104ACA0091F05A /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +128,7 @@
 				7FA229821B0835550091F05A /* AppDelegate.swift */,
 				7FA229841B0835550091F05A /* ViewController.swift */,
 				7FA229861B0835550091F05A /* Main.storyboard */,
+				7FA229CD1B104ACA0091F05A /* WebViewController.swift */,
 				7FA229C61B0C302F0091F05A /* MapViewController.swift */,
 				7FA229C01B0B1DD20091F05A /* DetailTableViewController.swift */,
 				7FA229B71B0AFFE70091F05A /* ContactTableViewController.swift */,
@@ -262,6 +266,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7FA229A51B08534F0091F05A /* Contact.swift in Sources */,
+				7FA229CE1B104ACA0091F05A /* WebViewController.swift in Sources */,
 				7FA229851B0835550091F05A /* ViewController.swift in Sources */,
 				7FA229B51B0AE3A00091F05A /* TwitterAPI.swift in Sources */,
 				7FA229C71B0C302F0091F05A /* MapViewController.swift in Sources */,
@@ -281,6 +286,7 @@
 				7FA229A91B0855570091F05A /* FlickrAPI.swift in Sources */,
 				7FA229A61B0853A30091F05A /* Contact.swift in Sources */,
 				7FA229AF1B086C570091F05A /* TimelineEntry.swift in Sources */,
+				7FA229CF1B104ACA0091F05A /* WebViewController.swift in Sources */,
 				7FA229991B0835550091F05A /* SocialTests.swift in Sources */,
 				7FA229C81B0C302F0091F05A /* MapViewController.swift in Sources */,
 				7FA229C21B0B1DD20091F05A /* DetailTableViewController.swift in Sources */,
