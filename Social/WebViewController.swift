@@ -9,10 +9,18 @@
 import UIKit
 import WebKit
 
+protocol WebViewControllerDelegate {
+    func webViewController(dvc: WebViewController, contact: Contact)
+}
+
+
 class WebViewController: UIViewController, UITextFieldDelegate {
+    
     //Variable for webView
     var webView: WKWebView!
-    var contactUrl: String = ""
+    var contact: Contact!
+    var delegate: WebViewControllerDelegate!
+
     
     //Textfeild to enter URL
     @IBOutlet weak var url_textField: UITextField!
@@ -42,9 +50,10 @@ class WebViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidAppear(animated: Bool) {
         //load default url of griffith wedsite when view appears
-        if let url = NSURL(string: contactUrl){
+        if let url = NSURL(string: contact.sites[0].identifier){
             let urlRequest = NSURLRequest(URL: url)
             webView.loadRequest(urlRequest)
+            url_textField.text = contact.sites[0].identifier
         }
         
     }
@@ -59,6 +68,8 @@ class WebViewController: UIViewController, UITextFieldDelegate {
             let urlRequest = NSURLRequest(URL: url)
             //load webview
             webView.loadRequest(urlRequest)
+            contact.sites[0].identifier = urlstring
+            
             textField.resignFirstResponder()
         }
         

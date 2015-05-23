@@ -87,6 +87,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                 let coordinates = location.coordinate
                 let coordRegion = MKCoordinateRegionMake(coordinates, MKCoordinateSpanMake(1, 1))
                 self.mapView.region = coordRegion
+                self.contact.address = address
                 
             }
             

@@ -13,7 +13,7 @@ protocol DetailViewControllerDelegate{
     func detailViewController(dvc: DetailTableViewController, contact: Contact)
 }
 
-class DetailTableViewController: UITableViewController, UITextFieldDelegate, MapViewControllerDelegate {
+class DetailTableViewController: UITableViewController, UITextFieldDelegate, MapViewControllerDelegate, WebViewControllerDelegate {
 
     var contact: Contact!
     var delegete: DetailViewControllerDelegate!
@@ -36,7 +36,8 @@ class DetailTableViewController: UITableViewController, UITextFieldDelegate, Map
 
     
     override func viewWillAppear(animated: Bool) {
-        
+        tableCells = ["NameCell", "AddressCell", "SocialCell", "PicUrlCell", "PicImageCell"]
+        tableView.reloadData()
     }
     
     
@@ -99,9 +100,10 @@ class DetailTableViewController: UITableViewController, UITextFieldDelegate, Map
     
     func mapViewController(dvc: MapViewController, contact: Contact){
         navigationController?.popToViewController(self, animated: true)
-        tableView.reloadData()
     }
-
+    func webViewController(dvc: WebViewController, contact: Contact){
+        navigationController?.popToViewController(self, animated: true)
+    }
     
     override func setEditing(editing: Bool, animated: Bool) {
         //super.setEditing(editing, animated: animated)
@@ -262,7 +264,8 @@ class DetailTableViewController: UITableViewController, UITextFieldDelegate, Map
         }
         
         if let dvc = segue.destinationViewController as? WebViewController {
-            dvc.contactUrl = contact.sites[0].identifier
+            dvc.contact = contact
+            dvc.delegate = self
         }
         
         
