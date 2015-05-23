@@ -30,7 +30,7 @@ class Contact {
         self.firstName = "First Name"
         self.lastName = "Last Name"
         self.address = "Ipswich 4305"
-        self.imageURL = ""
+        self.imageURL = "http://rack.1.mshcdn.com/media/ZgkyMDEyLzEyLzA0L2IzL2JhcmFja29iYW1hLmMzWi5qcGcKcAl0aHVtYgk5NTB4NTM0IwplCWpwZw/5b0bff81/e0a/barack-obama-look-alike-wants-privacy-and-bar-mitzvah-gigs-223a5782e9.jpg"
         self.image = nil
         self.sites = [SocialMediaAccount()]
     }

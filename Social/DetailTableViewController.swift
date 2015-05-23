@@ -13,19 +13,16 @@ protocol DetailViewControllerDelegate{
     func detailViewController(dvc: DetailTableViewController, contact: Contact)
 }
 
-
-
 class DetailTableViewController: UITableViewController, UITextFieldDelegate, MapViewControllerDelegate {
 
     var contact: Contact!
     var delegete: DetailViewControllerDelegate!
     var imageData: NSData?
+    var tableCells = ["NameCell", "AddressCell", "SocialCell", "PicUrlCell", "PicImageCell"]
     
-    @IBOutlet weak var pictureUrlTxt: UITextField!
-    @IBOutlet weak var firstNameTxt: UITextField!
-    @IBOutlet weak var lastNameTxt: UITextField!
-    @IBOutlet weak var contactProfile: UIImageView!
-    @IBOutlet weak var addressCell: UITableViewCell!
+   
+
+ 
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,61 +37,34 @@ class DetailTableViewController: UITableViewController, UITextFieldDelegate, Map
     
     override func viewWillAppear(animated: Bool) {
         
-        firstNameTxt.text = contact.firstName
-        lastNameTxt.text = contact.lastName
-        pictureUrlTxt.text = contact.imageURL
-        addressCell.textLabel!.text = contact.address
-        loadImage()
-    
-        
     }
     
     
-    func loadImage(){
-        let conToImage: (NSData?) -> Void = {
-            if let d = $0 {
-                self.imageData = d
-                let image = UIImage(data: d)
-                self.contactProfile.image = image
-            } else {
-                self.contactProfile.image = nil
-            }
-        }
-        if let d = contact.image {
-            conToImage(d)
-        } else {
-            contact.loadimage(conToImage)
-        }
+    
+    
+    @IBAction func SetEdit(sender: AnyObject) {
+      //  if title == "Add"{
+        setEditing(true, animated: true)
+          //  title = "Done"
+      //  } else {
+         //   setEditing(false, animated: true)
+          //  title = "Add"
+       // }
         
-
     }
-    
-    
     
     
     @IBAction func saveContact(sender: AnyObject) {
-        if let fn = firstNameTxt.text {
-            if let ln = lastNameTxt.text {
-                if let ad = addressCell.textLabel!.text  {
-                    if let iu = pictureUrlTxt.text {
-                        contact.firstName = fn
-                        contact.lastName = ln
-                        contact.address = ad
-                        contact.imageURL = iu
-                        contact.image = imageData
-                        delegete.detailViewController(self, contact: contact)
-                    }
-                }
-            }
-        }
+        
+        
+        
+        delegete.detailViewController(self, contact: contact)
         
     }
     
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
-        loadImage()
-        
         return true
     }
     
@@ -116,16 +86,10 @@ class DetailTableViewController: UITableViewController, UITextFieldDelegate, Map
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        
-        
-        
-        // Return the number of rows in the section.
 
         if section == 1 {
-            return 3  //REPLACE! with count of secial media accounts
+            return contact.sites.count
         }else {
-        
         
             return 2
         }
@@ -139,16 +103,115 @@ class DetailTableViewController: UITableViewController, UITextFieldDelegate, Map
     }
 
     
-
-    /*
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as! UITableViewCell
-
-        // Configure the cell...
-
-        return cell
+    override func setEditing(editing: Bool, animated: Bool) {
+        //super.setEditing(editing, animated: animated)
+        if editing {
+            tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: contact.sites.count, inSection: 1)], withRowAnimation: .Automatic)
+        } else {
+            tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: contact.sites.count, inSection: 1)], withRowAnimation: .Automatic)
+    
+        }
     }
-    */
+    
+    override func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+        let index = tableView.indexPathForSelectedRow()
+        let currCell = tableView.cellForRowAtIndexPath(index!) as UITableViewCell?
+        
+        if indexPath.section == 1 && currCell!.detailTextLabel?.text == "Web" {
+       //     performSegueWithIdentifier("ShowSocial", sender: self)
+        }
+    }
+
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        switch(section){
+        case 0:
+        return "Name and Address"
+        case 1:
+        return "Social"
+        case 2:
+        return "Picture"
+        default:
+        return ""
+        }
+    }
+
+    
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        if indexPath.section == 2 && indexPath.row == 1{
+            return 260
+        } else {
+            return 44
+        }
+    }
+    
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
+        var cell = tableView.dequeueReusableCellWithIdentifier(tableCells[indexPath.row], forIndexPath: indexPath) as! UITableViewCell
+        
+        
+        switch (indexPath.section) {
+        case 0:
+            if indexPath.row == 0 {
+                if let txtField = cell.viewWithTag(1) as? UITextField {
+                    txtField.text = contact.firstName
+                }
+                    
+                if let txtField = cell.viewWithTag(2) as? UITextField {
+                    txtField.text = contact.lastName
+                }
+           
+            }
+            
+            if indexPath.row == 1 {
+                cell.textLabel?.text = contact.address
+                
+                tableCells.removeAtIndex(0)
+                tableCells.removeAtIndex(0)
+
+            }
+          
+            
+        case 1:
+            cell.textLabel?.text = contact.sites[indexPath.row].identifier
+            cell.detailTextLabel?.text = contact.sites[indexPath.row].type
+            tableCells.removeAtIndex(0)
+
+        case 2:
+            if indexPath.row == 0 {
+                if let txtField = cell.viewWithTag(1) as? UITextField {
+                    txtField.text = contact.imageURL
+                }
+                
+            } else {
+                
+                let conToImage: (NSData?) -> Void = {
+                    if let d = $0 {
+                        self.imageData = d
+                        let image = UIImage(data: d)
+                        
+                        if let imageV = cell.viewWithTag(1) as? UIImageView {
+                            imageV.image = image                        }
+                        
+                    } else {
+                        cell.imageView!.image = nil
+                    }
+                }
+                if let d = contact.image {
+                    conToImage(d)
+                } else {
+                    contact.loadimage(conToImage)
+                }
+               
+        }
+        default:
+            cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as! UITableViewCell
+    }
+         return cell
+    }
+
+
+
+
 
     /*
     // Override to support conditional editing of the table view.
@@ -189,36 +252,9 @@ class DetailTableViewController: UITableViewController, UITextFieldDelegate, Map
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-      
+     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
-        if let cell = sender as? UITableViewCell {
-            if cell.detailTextLabel == "Web" {
-                performSegueWithIdentifier("ShowWeb", sender: self)
-            }
-        }
-        
-        
-        
-        
-        
-        
-        if let fn = firstNameTxt.text {
-            if let ln = lastNameTxt.text {
-                if let ad = addressCell.textLabel!.text  {
-                    if let iu = pictureUrlTxt.text {
-                        contact.firstName = fn
-                        contact.lastName = ln
-                        contact.address = ad
-                        contact.imageURL = iu
-                        contact.image = imageData
-                    }
-                }
-            }
-        }
-        
-
-        
+       
         
         if let dvc = segue.destinationViewController as? MapViewController {
             dvc.contact = contact
@@ -234,3 +270,5 @@ class DetailTableViewController: UITableViewController, UITextFieldDelegate, Map
     
 
 }
+
+

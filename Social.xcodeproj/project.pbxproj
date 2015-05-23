@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		7FA229831B0835550091F05A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA229821B0835550091F05A /* AppDelegate.swift */; };
-		7FA229851B0835550091F05A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA229841B0835550091F05A /* ViewController.swift */; };
 		7FA229881B0835550091F05A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7FA229861B0835550091F05A /* Main.storyboard */; };
 		7FA2298A1B0835550091F05A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7FA229891B0835550091F05A /* Images.xcassets */; };
 		7FA2298D1B0835550091F05A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FA2298B1B0835550091F05A /* LaunchScreen.xib */; };
@@ -51,7 +50,6 @@
 		7FA2297D1B0835550091F05A /* Social.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Social.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7FA229811B0835550091F05A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7FA229821B0835550091F05A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		7FA229841B0835550091F05A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		7FA229871B0835550091F05A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7FA229891B0835550091F05A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		7FA2298C1B0835550091F05A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -126,7 +124,6 @@
 				7FA229AA1B086B770091F05A /* SocialMediaAccount.swift */,
 				7FA229AD1B086C570091F05A /* TimelineEntry.swift */,
 				7FA229821B0835550091F05A /* AppDelegate.swift */,
-				7FA229841B0835550091F05A /* ViewController.swift */,
 				7FA229861B0835550091F05A /* Main.storyboard */,
 				7FA229CD1B104ACA0091F05A /* WebViewController.swift */,
 				7FA229C61B0C302F0091F05A /* MapViewController.swift */,
@@ -267,7 +264,6 @@
 			files = (
 				7FA229A51B08534F0091F05A /* Contact.swift in Sources */,
 				7FA229CE1B104ACA0091F05A /* WebViewController.swift in Sources */,
-				7FA229851B0835550091F05A /* ViewController.swift in Sources */,
 				7FA229B51B0AE3A00091F05A /* TwitterAPI.swift in Sources */,
 				7FA229C71B0C302F0091F05A /* MapViewController.swift in Sources */,
 				7FA229C11B0B1DD20091F05A /* DetailTableViewController.swift in Sources */,
