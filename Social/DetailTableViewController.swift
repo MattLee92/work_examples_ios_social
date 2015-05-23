@@ -57,10 +57,29 @@ class DetailTableViewController: UITableViewController, UITextFieldDelegate, Map
     
     @IBAction func saveContact(sender: AnyObject) {
         
-        
-        
+        SaveCurrent()
         delegete.detailViewController(self, contact: contact)
         
+    }
+    
+    
+    
+    
+    func SaveCurrent(){
+        
+        if let f_name = self.tableView.viewWithTag(1) as? UITextField {
+            contact.firstName = f_name.text
+        }
+        if let l_name = self.tableView.viewWithTag(2) as? UITextField {
+            contact.lastName = l_name.text
+        }
+        if let picurl = self.tableView.viewWithTag(3) as? UITextField {
+            contact.imageURL = picurl.text
+        }
+        
+        
+        
+
     }
     
     
@@ -147,6 +166,8 @@ class DetailTableViewController: UITableViewController, UITextFieldDelegate, Map
         }
     }
     
+    
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
         var cell = tableView.dequeueReusableCellWithIdentifier(tableCells[indexPath.row], forIndexPath: indexPath) as! UITableViewCell
         
@@ -156,6 +177,7 @@ class DetailTableViewController: UITableViewController, UITextFieldDelegate, Map
             if indexPath.row == 0 {
                 if let txtField = cell.viewWithTag(1) as? UITextField {
                     txtField.text = contact.firstName
+                   
                 }
                     
                 if let txtField = cell.viewWithTag(2) as? UITextField {
@@ -180,7 +202,7 @@ class DetailTableViewController: UITableViewController, UITextFieldDelegate, Map
 
         case 2:
             if indexPath.row == 0 {
-                if let txtField = cell.viewWithTag(1) as? UITextField {
+                if let txtField = cell.viewWithTag(3) as? UITextField {
                     txtField.text = contact.imageURL
                 }
                 
@@ -191,7 +213,7 @@ class DetailTableViewController: UITableViewController, UITextFieldDelegate, Map
                         self.imageData = d
                         let image = UIImage(data: d)
                         
-                        if let imageV = cell.viewWithTag(1) as? UIImageView {
+                        if let imageV = cell.viewWithTag(4) as? UIImageView {
                             imageV.image = image                        }
                         
                     } else {
@@ -203,18 +225,22 @@ class DetailTableViewController: UITableViewController, UITextFieldDelegate, Map
                 } else {
                     contact.loadimage(conToImage)
                 }
-               
-        }
+            }
+            
+        
         default:
             cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as! UITableViewCell
+        
     }
          return cell
     }
 
 
 
+   
 
-
+    
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
@@ -256,7 +282,7 @@ class DetailTableViewController: UITableViewController, UITextFieldDelegate, Map
     // In a storyboard-based application, you will often want to do a little preparation before navigation
      override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
-       
+        SaveCurrent()
         
         if let dvc = segue.destinationViewController as? MapViewController {
             dvc.contact = contact
