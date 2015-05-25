@@ -18,25 +18,30 @@ protocol MapViewControllerDelegate {
 
 class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, UITextFieldDelegate {
 
+    //Outlets
     @IBOutlet weak var AddressTextField: UITextField!
     @IBOutlet weak var mapView: MKMapView!
+    
+    
+    //Variables
     var locationManager: CLLocationManager!
     var geoCoder: CLGeocoder!
     var contact: Contact!
     var delegate: MapViewControllerDelegate!
     
+    
     override func viewDidLoad() {
+        //Set location manager and delegates
         locationManager = CLLocationManager()
         locationManager.delegate = self
         geoCoder = CLGeocoder()
-        
-        
+     
         super.viewDidLoad()
-        
         
     }
 
     override func viewDidAppear(animated: Bool) {
+        //Get address from Model
         AddressTextField.text = contact.address
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
@@ -45,6 +50,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     func locationManager(manager: CLLocationManager!, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
         let allow: Bool
         
+        //Get user auth status
         switch status {
             
         case .NotDetermined:
@@ -73,6 +79,15 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
     }
     
+    
+    
+    /**
+    Function sets the location based on textfield delegate
+    
+    :param: address Contact address
+    
+    
+    */
     func setLocation(){
         locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers
         locationManager.distanceFilter = 100
@@ -87,13 +102,12 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                 let coordinates = location.coordinate
                 let coordRegion = MKCoordinateRegionMake(coordinates, MKCoordinateSpanMake(1, 1))
                 self.mapView.region = coordRegion
+                // Set the address in the model in case user changes
                 self.contact.address = address
                 
             }
             
         }
-        
-        
         
         
     }

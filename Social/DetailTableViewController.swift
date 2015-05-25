@@ -20,9 +20,6 @@ class DetailTableViewController: UITableViewController, UITextFieldDelegate, Map
     var imageData: NSData?
     var tableCells = ["NameCell", "AddressCell", "SocialCell", "PicUrlCell", "PicImageCell"]
     
-   
-
- 
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,19 +35,13 @@ class DetailTableViewController: UITableViewController, UITextFieldDelegate, Map
     override func viewWillAppear(animated: Bool) {
         tableCells = ["NameCell", "AddressCell", "SocialCell", "PicUrlCell", "PicImageCell"]
         tableView.reloadData()
+        
     }
     
     
     
     
     @IBAction func SetEdit(sender: AnyObject) {
-      //  if title == "Add"{
-        setEditing(true, animated: true)
-          //  title = "Done"
-      //  } else {
-         //   setEditing(false, animated: true)
-          //  title = "Add"
-       // }
         
     }
     
@@ -64,7 +55,11 @@ class DetailTableViewController: UITableViewController, UITextFieldDelegate, Map
     
     
     
+    /**
+    Function saves the Current contact based on latest user input
     
+    
+    */
     func SaveCurrent(){
         
         if let f_name = self.tableView.viewWithTag(1) as? UITextField {
@@ -84,6 +79,7 @@ class DetailTableViewController: UITableViewController, UITextFieldDelegate, Map
     
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
+        
         textField.resignFirstResponder()
         return true
     }
@@ -116,7 +112,7 @@ class DetailTableViewController: UITableViewController, UITextFieldDelegate, Map
     
     }
     
-    
+    //Delegate for map and Webviews
     func mapViewController(dvc: MapViewController, contact: Contact){
         navigationController?.popToViewController(self, animated: true)
     }
@@ -144,6 +140,7 @@ class DetailTableViewController: UITableViewController, UITextFieldDelegate, Map
     }
 
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+       //Set headers for sections
         switch(section){
         case 0:
         return "Name and Address"
@@ -159,6 +156,7 @@ class DetailTableViewController: UITableViewController, UITextFieldDelegate, Map
     
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        //Set size of cells 260 for image 44 for others
         if indexPath.section == 2 && indexPath.row == 1{
             return 260
         } else {
@@ -171,9 +169,11 @@ class DetailTableViewController: UITableViewController, UITextFieldDelegate, Map
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
         var cell = tableView.dequeueReusableCellWithIdentifier(tableCells[indexPath.row], forIndexPath: indexPath) as! UITableViewCell
         
-        
+        //Select index section
+        //Selelct index row and set data from the model
         switch (indexPath.section) {
         case 0:
+            
             if indexPath.row == 0 {
                 if let txtField = cell.viewWithTag(1) as? UITextField {
                     txtField.text = contact.firstName

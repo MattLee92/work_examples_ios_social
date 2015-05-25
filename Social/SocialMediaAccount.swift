@@ -8,6 +8,15 @@
 
 import Foundation
 
+/**
+    Class represents a social media account
+
+    :param: identifier Media Address
+    :param: type Media type
+    :param: entries Array of TimelineEntries
+
+*/
+
 class SocialMediaAccount {
     
     var identifier: String
@@ -16,8 +25,8 @@ class SocialMediaAccount {
     
     
     init(){
-        self.identifier = "http://www.google.com.au"
-        self.type = "Web"
+        self.identifier = ""
+        self.type = ""
         self.entries = []
     }
     

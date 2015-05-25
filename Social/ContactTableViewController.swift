@@ -15,13 +15,15 @@ class ContactTableViewController: UITableViewController, DetailViewControllerDel
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        LoadFromFile()
+        println(contacts.count)
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        self.navigationItem.leftBarButtonItem = self.editButtonItem()
     }
 
+    //Action to add new contact to model
     @IBAction func AddContact(sender: AnyObject) {
         currentContact = Contact()
         contacts.append(currentContact)
@@ -30,6 +32,59 @@ class ContactTableViewController: UITableViewController, DetailViewControllerDel
         
         
     }
+    override func viewDidAppear(animated: Bool) {
+        SaveToFile()
+    }
+    
+    
+    /**
+    Function Saves current contacts to file
+    
+    
+    
+    */
+    private func SaveToFile(){
+        println("SAVE")
+        println(contacts.count)
+        
+        let arrayPLIST: NSArray = contacts.map { $0.propertyListRep()}
+        //Get the file path and name
+        println(arrayPLIST[0])
+        let saveDir = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as! NSString
+        let fileName = saveDir.stringByAppendingPathComponent("contacTdata.plist")
+        //Write array to file
+            println(arrayPLIST.count)
+        arrayPLIST.writeToFile(fileName, atomically: true)
+       
+        
+        }
+    
+    /**
+    Function Loads contacts from file
+    
+    
+    */
+    private func LoadFromFile() {
+        println("LOAD")
+        //Get the file path and name
+         let saveDir = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as! NSString
+             let fileName = saveDir.stringByAppendingPathComponent("contacTdata.plist")
+        
+         let fileContent = NSArray(contentsOfFile: fileName) as! Array<NSDictionary>
+            let arrayReadContacts = fileContent.map{ Contact(PropertyList: $0)}
+        
+            println(arrayReadContacts.count)
+            contacts = arrayReadContacts
+            //Refresh the colletion data
+        
+    }
+        
+    
+
+    
+    
+    
+    
     
     
     override func didReceiveMemoryWarning() {
@@ -40,19 +95,21 @@ class ContactTableViewController: UITableViewController, DetailViewControllerDel
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Potentially incomplete method implementation.
+       
         // Return the number of sections.
         return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete method implementation.
+        
         // Return the number of rows in the section.
         return contacts.count
     }
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
+        println("RELAOD")
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! UITableViewCell
 
                 let contact = contacts[indexPath.row]
@@ -89,13 +146,15 @@ class ContactTableViewController: UITableViewController, DetailViewControllerDel
     
     
     override func viewWillAppear(animated: Bool) {
-        tableView.reloadData()
+       // tableView.reloadData()
+        
     }
     
     
     
     func detailViewController(dvc: DetailTableViewController, contact: Contact){
         navigationController?.popToViewController(self, animated: true)
+        SaveToFile()
         tableView.reloadData()
     }
     
@@ -110,17 +169,17 @@ class ContactTableViewController: UITableViewController, DetailViewControllerDel
     }
     */
 
-    /*
+    
     // Override to support editing the table view.
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
-            // Delete the row from the data source
+            contacts.removeAtIndex(indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         } else if editingStyle == .Insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
     }
-    */
+    
 
     /*
     // Override to support rearranging the table view.

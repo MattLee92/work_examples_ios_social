@@ -27,10 +27,10 @@ class Contact {
     
     //Initialise variables
     init(){
-        self.firstName = "First Name"
-        self.lastName = "Last Name"
-        self.address = "Ipswich 4305"
-        self.imageURL = "http://rack.1.mshcdn.com/media/ZgkyMDEyLzEyLzA0L2IzL2JhcmFja29iYW1hLmMzWi5qcGcKcAl0aHVtYgk5NTB4NTM0IwplCWpwZw/5b0bff81/e0a/barack-obama-look-alike-wants-privacy-and-bar-mitzvah-gigs-223a5782e9.jpg"
+        self.firstName = ""
+        self.lastName = ""
+        self.address = ""
+        self.imageURL = ""
         self.image = nil
         self.sites = [SocialMediaAccount()]
     }
@@ -74,27 +74,28 @@ extension Contact {
     
     //Function to Store instance of a Contact as NSDictionary (property list)
     func propertyListRep() -> NSDictionary {
-        let pld: NSDictionary=[
+        let pld: NSDictionary = [
             fNameKey : firstName,
             lNameKey : lastName,
             addressKey : address,
             imageUrlKey : imageURL,
-           // imageKey : image!,
             sitesKey : sites
-        ]
+            ]
         return pld
     }
     //Convenience init for reading from property list
     convenience init(PropertyList: NSDictionary){
         self.init()
-        firstName = PropertyList.objectForKey(fNameKey) as! String
-        lastName = PropertyList.objectForKey(lNameKey)as! String
-        address = PropertyList.objectForKey(addressKey) as! String
-        imageURL = PropertyList.objectForKey(imageUrlKey) as! String
-        image = PropertyList.objectForKey(imageKey) as? NSData
-        sites = PropertyList.objectForKey(sitesKey) as! Array
+        self.firstName = PropertyList.objectForKey(fNameKey) as! String
+        self.lastName = PropertyList.objectForKey(lNameKey) as! String
+        self.address = PropertyList.objectForKey(addressKey) as! String
+        self.imageURL = PropertyList.objectForKey(imageUrlKey) as! String
+        if let site: AnyObject = PropertyList.objectForKey(sitesKey) {
+            self.sites = site as! Array
+        }
         
-    }
+            }
+
 }
 
 
