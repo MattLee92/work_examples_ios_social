@@ -51,7 +51,7 @@ class ContactTableViewController: UITableViewController, DetailViewControllerDel
         //Get the file path and name
         println(arrayPLIST[0])
         let saveDir = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as! NSString
-        let fileName = saveDir.stringByAppendingPathComponent("contacTdata.plist")
+        let fileName = saveDir.stringByAppendingPathComponent("contactData.plist")
         //Write array to file
             println(arrayPLIST.count)
         arrayPLIST.writeToFile(fileName, atomically: true)
@@ -68,7 +68,7 @@ class ContactTableViewController: UITableViewController, DetailViewControllerDel
         println("LOAD")
         //Get the file path and name
          let saveDir = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as! NSString
-             let fileName = saveDir.stringByAppendingPathComponent("contacTdata.plist")
+             let fileName = saveDir.stringByAppendingPathComponent("contactData.plist")
         
          let fileContent = NSArray(contentsOfFile: fileName) as! Array<NSDictionary>
             let arrayReadContacts = fileContent.map{ Contact(PropertyList: $0)}

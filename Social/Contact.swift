@@ -79,7 +79,12 @@ extension Contact {
             lNameKey : lastName,
             addressKey : address,
             imageUrlKey : imageURL,
-            sitesKey : sites
+            sitesKey : sites.map { $0.propertyListRepAccount()}
+                
+            
+        
+                
+            
             ]
         return pld
     }
@@ -90,11 +95,27 @@ extension Contact {
         self.lastName = PropertyList.objectForKey(lNameKey) as! String
         self.address = PropertyList.objectForKey(addressKey) as! String
         self.imageURL = PropertyList.objectForKey(imageUrlKey) as! String
-        if let site: AnyObject = PropertyList.objectForKey(sitesKey) {
-            self.sites = site as! Array
-        }
+        self.sites.map { (PropertyListAccount: $0) }
         
             }
+    
+    
+    
+    func writeSite(){
+        
+        
+        
+        let arrayPLIST: NSArray = sites.map { $0.propertyListRepAccount()}
+        //Get the file path and name
+        let saveDir = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as! NSString
+        let fileName = saveDir.stringByAppendingPathComponent("contactSitedata.plist")
+        //Write array to file
+        arrayPLIST.writeToFile(fileName, atomically: true)
+        
+    
+    }
+    
+    
 
 }
 

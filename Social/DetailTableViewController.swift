@@ -19,7 +19,7 @@ class DetailTableViewController: UITableViewController, UITextFieldDelegate, Map
     var delegete: DetailViewControllerDelegate!
     var imageData: NSData?
     var tableCells = ["NameCell", "AddressCell", "SocialCell", "PicUrlCell", "PicImageCell"]
-    
+    var cellID: String = "NameCell"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -167,7 +167,10 @@ class DetailTableViewController: UITableViewController, UITextFieldDelegate, Map
     
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
-        var cell = tableView.dequeueReusableCellWithIdentifier(tableCells[indexPath.row], forIndexPath: indexPath) as! UITableViewCell
+     
+        
+        
+        var cell = tableView.dequeueReusableCellWithIdentifier(cellID, forIndexPath: indexPath) as! UITableViewCell
         
         //Select index section
         //Selelct index row and set data from the model
@@ -182,6 +185,7 @@ class DetailTableViewController: UITableViewController, UITextFieldDelegate, Map
                     
                 if let txtField = cell.viewWithTag(2) as? UITextField {
                     txtField.text = contact.lastName
+                    cellID = "AddressCell"
                 }
            
             }
@@ -189,21 +193,34 @@ class DetailTableViewController: UITableViewController, UITextFieldDelegate, Map
             if indexPath.row == 1 {
                 cell.textLabel?.text = contact.address
                 
-                tableCells.removeAtIndex(0)
-                tableCells.removeAtIndex(0)
+                cellID = "SocialCell"
 
             }
           
             
         case 1:
-            cell.textLabel?.text = contact.sites[indexPath.row].identifier
-            cell.detailTextLabel?.text = contact.sites[indexPath.row].type
-            tableCells.removeAtIndex(0)
+            
+            for site in contact.sites {
+                cell.textLabel?.text = contact.sites[indexPath.row].identifier
+                cell.detailTextLabel?.text = contact.sites[indexPath.row].type
+                return cell
+                
+            }
+           
+            if indexPath.row >= contact.sites.count {
+                cellID = "PicUrlCell"
+            }
+            
+            
 
         case 2:
+           
             if indexPath.row == 0 {
+              
                 if let txtField = cell.viewWithTag(3) as? UITextField {
                     txtField.text = contact.imageURL
+                    
+                    cellID = "PicImageCell"
                 }
                 
             } else {

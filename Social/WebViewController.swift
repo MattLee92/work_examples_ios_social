@@ -49,7 +49,7 @@ class WebViewController: UIViewController, UITextFieldDelegate {
     }
     
     override func viewDidAppear(animated: Bool) {
-        //load default url of griffith wedsite when view appears
+        
         if let url = NSURL(string: contact.sites[0].identifier){
             let urlRequest = NSURLRequest(URL: url)
             webView.loadRequest(urlRequest)
